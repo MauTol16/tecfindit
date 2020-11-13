@@ -14,7 +14,7 @@ export default class SignUp extends Component {
 
   signUp = (e) => {
     e.preventDefault();
-    axios.post("/api/signup", this.state).then((response) => {
+    axios.post("/api/signup", this.state, {withCredentials: true}).then((response) => {
       alert(response.data);
     });
   };

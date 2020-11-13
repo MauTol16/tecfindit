@@ -4,18 +4,30 @@ const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const app = express();
 const mysql = require("mysql");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 
 const PORT = 5000;
 const saltRounds = 10;
 //  ============= MIDDLEWARE
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(
-//   cors({
-//     origin: "http://localhost:3000",
-//     credentials: true,
-//   })
-// );
+app.use(express.json());
+app.use(cors({
+  origin: ["http://localhost:3000"],
+  methods: ["GET", "POST"],
+  credentials: true,
+}));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(session({
+  key: "userId",
+  secret: "secret",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    expires: 60 * 60* 24,
+  },
+}))
 
 // ==================
 const db = mysql.createPool({
@@ -57,10 +69,13 @@ app.post("/api/signup/", (req, res) => {
       console.log("ya existe usuario con ese correo");
       res.send("email already registered");
     } else {
-      const qq =
-        "insert into users(nombreUsuario, correo, passw) values (?, ?, ?)";
+      const qq = "insert into users(nombreUsuario, correo, passw) values (?, ?, ?)";
       bcrypt.hash(password, saltRounds, (err, hash) => {
-        db.query(qq, [name, email, hash], (err, resultx) => {
+        if(err) {
+          console.log(err);
+        }
+
+        db.query(qq, [name, email, hash], (err, result) => {
           console.log("usuario registrado");
           res.send("user registered");
         });
@@ -68,6 +83,46 @@ app.post("/api/signup/", (req, res) => {
     }
   });
 });
+
+app.get('/api/login', (req, res) => {
+  if(req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+  }
+  else {
+    res.send({ loggedIn: false });
+  }
+})
+
+app.post('/api/login/', (req, res) => {
+  const email = req.body.loginEmail;
+  const password = req.body.loginPassword;
+
+  db.query(
+    "SELECT * FROM users WHERE correo = ?",
+    email,
+    (err, result) => {
+      if(err) {
+        res.send({err: err});
+      }
+      
+      if(result.length > 0) {
+        bcrypt.compare(password, result[0].passw, (error, response) => {
+          if(response) {
+            req.session.user = result;
+            console.log(req.session.user);
+            res.send(result);
+          }
+          else {
+            res.send({message: "Wrong email or password."})
+          }
+        })
+      }
+      else {
+        res.send({message: "User doesn't exist."})
+      }
+    }
+  );
+})
 
 app.listen(PORT, () => {
   console.log("running on port 5000");

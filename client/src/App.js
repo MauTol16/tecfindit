@@ -25,7 +25,7 @@ function App() {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to={"/signin"}>
+                  <Link className="nav-link" to={"/login"}>
                     Login
                   </Link>
                 </li>
@@ -46,7 +46,7 @@ function App() {
 
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/signin" component={Login} />
+          <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
           <Route path="/createpost" component={CreatePost} />
         </Switch>
