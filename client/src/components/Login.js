@@ -15,26 +15,27 @@ export default class Login extends Component {
 
   login = (e) => {
     e.preventDefault();
-    axios.post("/api/login", this.state, {withCredentials: true}).then((response) => {
-      alert(response.data);
+    axios
+      .post("/api/login", this.state, { withCredentials: true })
+      .then((response) => {
+        alert(response.data);
 
-      if(response.data.message) {
-        this.state.loginStatus = response.data.message;
-      }
-      else {
-        this.state.loginStatus = response.data[0].email;
-      }
-    });
+        if (response.data.message) {
+          this.state.loginStatus = response.data.message;
+        } else {
+          this.state.loginStatus = response.data[0].email;
+        }
+      });
   };
 
   componentDidMount() {
     axios.get("/api/login").then((response) => {
-      if(response.data.loggedIn == true) {
+      if (response.data.loggedIn == true) {
         this.state.loginStatus = response.data.user[0].email;
       }
     });
   }
-  
+
   render() {
     return (
       <div className="auth-wrapper">
@@ -48,9 +49,7 @@ export default class Login extends Component {
                 type="email"
                 className="form-control"
                 placeholder="Enter email"
-                onChange={(e) =>
-                  this.setState({ loginEmail: e.target.value })
-                }
+                onChange={(e) => this.setState({ loginEmail: e.target.value })}
               />
             </div>
 
@@ -92,7 +91,7 @@ export default class Login extends Component {
           </form>
         </div>
 
-        <h1>{ this.loginStatus }</h1>
+        <h1>{this.loginStatus}</h1>
       </div>
     );
   }

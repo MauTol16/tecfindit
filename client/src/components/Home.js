@@ -8,10 +8,29 @@ export default class Home extends Component {
     super();
     this.state = {
       posts: [],
+      email: "",
+      name: "",
     };
   }
 
   componentDidMount() {
+    axios.get("/api/login").then((response) => {
+      console.log("response: " + response.data);
+      console.log(response.data);
+      if (response.data.loggedIn === true) {
+        console.log("im in");
+        this.setState({
+          email: response.data.user[0].correo,
+          name: response.data.user[0].nombreUsuario,
+        });
+      } else {
+        this.setState({
+          email: "",
+          name: "",
+        });
+      }
+    });
+
     axios.get("/api/").then((response) => {
       this.setState({
         posts: response.data,
@@ -22,6 +41,7 @@ export default class Home extends Component {
   render() {
     return (
       <div style={{ marginTop: "100px" }}>
+        <h1>{"hello: " + this.state.name}</h1>
         {this.state.posts.map((post) => {
           return (
             <Post
