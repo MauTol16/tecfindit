@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  background: #1c8ef9 !important;
+  background: #171a21 !important;
   min-height: 100vh;
   display: flex;
   font-weight: 400;
@@ -21,6 +21,7 @@ label,
 span {
   font-weight: 500;
   font-family: "Fira Sans", sans-serif;
+  color: #ffffff;
 }
 
 body,
@@ -55,7 +56,7 @@ html,
 }
 
 .auth-wrapper .form-control:focus {
-  border-color: #167bff;
+  border-color: #171a21;
   box-shadow: none;
 }
 
@@ -82,3 +83,4 @@ html,
 .forgot-password a {
   color: #167bff;
 }
+

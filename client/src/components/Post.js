@@ -32,7 +32,7 @@ export default class Post extends Component {
                 <a>
                   <img
                     alt="image"
-                    src="https://fertilitynetworkuk.org/wp-content/uploads/2017/01/Facebook-no-profile-picture-icon-620x389.jpg"
+                    src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"
                   />
                 </a>
               </div>
@@ -62,15 +62,11 @@ export default class Post extends Component {
                     className="img-responsive"
                   />
                   <div className="btn-group">
-                    <button className="btn btn-white btn-xs">
-                      <i className="fa fa-thumbs-up"></i> Like this!
-                    </button>
+                    
                     <button className="btn btn-white btn-xs">
                       <i className="fa fa-comments"></i> Comment
                     </button>
-                    <button className="btn btn-white btn-xs">
-                      <i className="fa fa-share"></i> Share
-                    </button>
+                    
                   </div>
                 </div>
                 <div className="social-footer">
@@ -83,6 +79,7 @@ export default class Post extends Component {
                         postid={comment.postid}
                         fecha={comment.fecha}
                         texto={comment.texto}
+                        tag={comment.tag}
                       />
                     );
                   })}
