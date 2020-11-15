@@ -18,8 +18,8 @@ export default class Login extends Component {
     axios
       .post("/api/login", this.state, { withCredentials: true })
       .then((response) => {
-        alert(response.data);
-
+        // alert(response.data);
+        window.location.reload();
         if (response.data.message) {
           this.state.loginStatus = response.data.message;
         } else {

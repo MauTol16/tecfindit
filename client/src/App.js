@@ -28,10 +28,10 @@ export default class App extends Component {
 
   upd = () => {
     axios.get("/api/login").then((response) => {
-      console.log("response: " + response.data);
-      console.log(response.data);
+      // console.log("response: " + response.data);
+      // console.log(response.data);
       if (response.data.loggedIn === true) {
-        console.log("im in");
+        // console.log("im in");
         this.setState({
           email: response.data.user[0].correo,
           name: response.data.user[0].nombreUsuario,
@@ -49,15 +49,26 @@ export default class App extends Component {
     this.upd();
   }
 
-  componentDidUpdate() {
-    this.upd();
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.email !== this.state.email) {
+      this.upd();
+    }
+    // this.upd();
   }
 
   render() {
     let logout;
     let login;
-
+    let signup;
+    let createpost;
     if (this.state.email !== "") {
+      createpost = (
+        <li className="nav-item">
+          <Link className="nav-link" to={"/createpost"}>
+            Create post
+          </Link>
+        </li>
+      );
       logout = (
         <li className="nav-item">
           <Link className="nav-link" to={"/"}>
@@ -66,7 +77,15 @@ export default class App extends Component {
         </li>
       );
       login = null;
+      signup = null;
     } else {
+      signup = (
+        <li className="nav-item">
+          <Link className="nav-link" to={"/signup"}>
+            Sign up
+          </Link>
+        </li>
+      );
       login = (
         <li className="nav-item">
           <Link className="nav-link" to={"/login"}>
@@ -74,6 +93,7 @@ export default class App extends Component {
           </Link>
         </li>
       );
+      createpost = null;
       logout = null;
     }
 
@@ -97,19 +117,10 @@ export default class App extends Component {
                       Home
                     </Link>
                   </li>
-                  {logout}
-
                   {login}
-                  <li className="nav-item">
-                    <Link className="nav-link" to={"/signup"}>
-                      Sign up
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to={"/createpost"}>
-                      Create post
-                    </Link>
-                  </li>
+                  {signup}
+                  {createpost}
+                  {logout}
                 </ul>
               </div>
             </div>
@@ -121,9 +132,13 @@ export default class App extends Component {
             <Route path="/login">
               {this.state.email !== "" ? <Redirect to="/" /> : <Login />}
             </Route>
-
-            <Route path="/signup" component={SignUp} />
-            <Route path="/createpost" component={CreatePost} />
+            <Route path="/signup">
+              {this.state.email !== "" ? <Redirect to="/" /> : <SignUp />}
+            </Route>
+            <Route path="/createpost">
+              {this.state.email === "" ? <Redirect to="/" /> : <CreatePost />}
+            </Route>
+            {/* <Route path="/signup" component={SignUp} /> */}
           </Switch>
         </div>
       </Router>
