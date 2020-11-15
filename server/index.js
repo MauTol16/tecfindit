@@ -42,9 +42,10 @@ const db = mysql.createPool({
 });
 
 app.get("/api/", (req, res) => {
-  // // res.send("holsadfsa");
   const sqlInsertUser = "select * from posts order by fecha desc";
-  db.query(sqlInsertUser, (err, result) => {
+  const q =
+    "SELECT P.*, U.nombreUsuario FROM Posts P, Users U WHERE P.correo = U.correo order by fecha desc";
+  db.query(q, (err, result) => {
     if (err) {
       console.log(err);
     }
@@ -148,6 +149,7 @@ app.post("/api/createpost/", (req, res) => {
     db.query(q, [email, tag, objName, place, date, image], (err, result) => {
       if (err) {
         console.log(err);
+        res.send("error, post not created");
       }
       console.log(result);
       res.send("Post created");

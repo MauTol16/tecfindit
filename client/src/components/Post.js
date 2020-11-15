@@ -64,7 +64,7 @@ export default class Post extends Component {
                   </ul>
                 </div>
                 <div className="social-avatar">
-                  <a>{this.props.correo}</a>
+                  <a>{this.props.nombreUsuario}</a>
                   <br />
                   <small className="text-muted">
                     {this.formatDate(this.props.fecha)}
@@ -77,11 +77,9 @@ export default class Post extends Component {
                     className="img-responsive img-size"
                   />
                   <div className="btn-group">
-                    
                     <button className="btn btn-white btn-xs">
                       <i className="fa fa-comments"></i> Comment
                     </button>
-                    
                   </div>
                 </div>
                 <div className="social-footer">

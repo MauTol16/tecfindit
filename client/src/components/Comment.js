@@ -2,6 +2,18 @@ import React, { Component } from "react";
 import "./Post.css";
 
 export default class Comment extends Component {
+  formatDate = (date) => {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
+  };
+
   render() {
     return (
       <div className="social-comment">
@@ -16,7 +28,10 @@ export default class Comment extends Component {
           <a className="small">
             <i className="fa fa-thumbs-up"></i> 26 Like this!
           </a>{" "}
-          -<small className="text-muted">{this.props.fecha}</small>
+          -
+          <small className="text-muted">
+            {this.formatDate(this.props.fecha)}
+          </small>
         </div>
       </div>
     );
