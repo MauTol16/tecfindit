@@ -11,7 +11,11 @@ body {
   font-family: "Fira Sans", sans-serif;
 }
 
-h1,
+.post-title {
+  color:#ffffff;
+  
+}
+
 h2,
 h3,
 h4,
@@ -21,7 +25,7 @@ label,
 span {
   font-weight: 500;
   font-family: "Fira Sans", sans-serif;
-  color: #ffffff;
+  color: #171a21;
 }
 
 body,

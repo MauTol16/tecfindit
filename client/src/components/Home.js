@@ -41,7 +41,7 @@ export default class Home extends Component {
   render() {
     return (
       <div style={{ marginTop: "100px" }}>
-        <h1>{"hello: " + this.state.name}</h1>
+        <h1 className="post-title">{"Welcome " + this.state.name}</h1>
         {this.state.posts.map((post) => {
           return (
             <Post
@@ -56,6 +56,7 @@ export default class Home extends Component {
           );
         })}
       </div>
+      
     );
   }
 }
