@@ -63,11 +63,11 @@ export default class Home extends Component {
               lugar={post.lugar}
               fecha={post.fecha}
               image={post.image}
+              nombreUsuario={post.nombreUsuario}
             />
           );
         })}
       </div>
-      
     );
   }
 }

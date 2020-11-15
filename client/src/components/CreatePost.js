@@ -16,6 +16,7 @@ export default class CreatePost extends Component {
       fDate: temp,
       name: "",
       email: "",
+      ok: false,
     };
   }
 
@@ -73,6 +74,9 @@ export default class CreatePost extends Component {
       .post("/api/createpost", this.state, { withCredentials: true })
       .then((response) => {
         alert(response.data);
+        if (response.data === "post created") {
+          window.location.href = "/";
+        }
       });
   };
 
