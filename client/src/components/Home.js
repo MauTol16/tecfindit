@@ -13,12 +13,12 @@ export default class Home extends Component {
     };
   }
 
-  componentDidMount() {
+  upd = () => {
     axios.get("/api/login").then((response) => {
-      console.log("response: " + response.data);
-      console.log(response.data);
+      // console.log("response: " + response.data);
+      // console.log(response.data);
       if (response.data.loggedIn === true) {
-        console.log("im in");
+        // console.log("im in");
         this.setState({
           email: response.data.user[0].correo,
           name: response.data.user[0].nombreUsuario,
@@ -30,12 +30,22 @@ export default class Home extends Component {
         });
       }
     });
+  };
 
+  componentDidMount() {
+    this.upd();
     axios.get("/api/").then((response) => {
       this.setState({
         posts: response.data,
       });
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.email !== this.state.email) {
+      this.upd();
+    }
+    // this.upd();
   }
 
   render() {
@@ -52,6 +62,7 @@ export default class Home extends Component {
               objectName={post.objectName}
               lugar={post.lugar}
               fecha={post.fecha}
+              image={post.image}
             />
           );
         })}

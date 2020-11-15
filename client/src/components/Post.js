@@ -14,13 +14,25 @@ export default class Post extends Component {
 
   componentDidMount() {
     axios.get(`/api/post/${this.props.postID}`).then((response) => {
-      console.log("holaaaa");
-      console.log(response.data);
+      // console.log("holaaaa");
+      // console.log(response.data);
       this.setState({
         comments: response.data,
       });
     });
   }
+
+  formatDate = (date) => {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
+  };
 
   render() {
     return (
@@ -53,13 +65,16 @@ export default class Post extends Component {
                 </div>
                 <div className="social-avatar">
                   <a>{this.props.correo}</a>
-                  <small className="text-muted">{this.props.fecha}</small>
+                  <br />
+                  <small className="text-muted">
+                    {this.formatDate(this.props.fecha)}
+                  </small>
                 </div>
                 <div className="social-body">
                   <p>{this.props.objectName}</p>
                   <img
-                    src="https://pm1.narvii.com/7636/c4fac5df831105dff383b0518f9e7f45301229a5r1-720-734v2_00.jpg"
-                    className="img-responsive"
+                    src={this.props.image}
+                    className="img-responsive img-size"
                   />
                   <div className="btn-group">
                     <button className="btn btn-white btn-xs">

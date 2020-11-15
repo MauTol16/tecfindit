@@ -4,7 +4,7 @@ import axios from "axios";
 export default class Logout extends Component {
   logOut = () => {
     axios.get("/api/logout").then((response) => {
-      alert(response.data);
+      // alert(response.data);
       window.location.reload();
     });
   };

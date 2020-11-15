@@ -43,7 +43,7 @@ const db = mysql.createPool({
 
 app.get("/api/", (req, res) => {
   // // res.send("holsadfsa");
-  const sqlInsertUser = "select * from posts";
+  const sqlInsertUser = "select * from posts order by fecha desc";
   db.query(sqlInsertUser, (err, result) => {
     if (err) {
       console.log(err);
@@ -124,12 +124,37 @@ app.post("/api/login/", (req, res) => {
 
 app.get("/api/logout", (req, res) => {
   req.session.destroy((err) => {
+    console.log(req.session);
     if (err) {
       console.log(err);
     }
     res.clearCookie("userId");
     res.send("user logged out");
   });
+});
+
+app.post("/api/createpost/", (req, res) => {
+  if (req.session) {
+    console.log(req.session);
+    const email = req.session.user[0].correo;
+    const objName = req.body.objName;
+    const place = req.body.place;
+    const date = req.body.fDate;
+    const image = req.body.image;
+    const tag = "Not Found";
+    console.log(email);
+    const q =
+      "INSERT INTO posts(correo, tag, objectName, lugar, fecha,image) values (?, ?, ?, ?, ?, ?)";
+    db.query(q, [email, tag, objName, place, date, image], (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(result);
+      res.send("post created");
+    });
+  } else {
+    res.send("Access Unauthorized");
+  }
 });
 
 app.listen(PORT, () => {
