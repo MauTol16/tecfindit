@@ -71,7 +71,7 @@ app.post("/api/signup/", (req, res) => {
   db.query(q, email, (err, result) => {
     if (result.length > 0) {
       console.log("ya existe usuario con ese correo");
-      res.send("email already registered");
+      res.send("Email already registered");
     } else {
       const qq =
         "insert into users(nombreUsuario, correo, passw) values (?, ?, ?)";
@@ -82,7 +82,7 @@ app.post("/api/signup/", (req, res) => {
 
         db.query(qq, [name, email, hash], (err, result) => {
           console.log("usuario registrado");
-          res.send("user registered");
+          res.send("User succesfully registered");
         });
       });
     }
@@ -150,7 +150,7 @@ app.post("/api/createpost/", (req, res) => {
         console.log(err);
       }
       console.log(result);
-      res.send("post created");
+      res.send("Post created");
     });
   } else {
     res.send("Access Unauthorized");
