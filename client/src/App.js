@@ -136,7 +136,7 @@ export default class App extends Component {
               {this.state.email !== "" ? <Redirect to="/" /> : <SignUp />}
             </Route>
             <Route path="/createpost">
-              {this.state.email === "" ? <Redirect to="/" /> : <CreatePost />}
+              {this.state.email !== "" ? <CreatePost /> : <Redirect to="/" />}
             </Route>
             {/* <Route path="/signup" component={SignUp} /> */}
           </Switch>
