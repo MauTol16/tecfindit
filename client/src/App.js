@@ -14,6 +14,7 @@ import SignUp from "./components/SignUp";
 import CreatePost from "./components/CreatePost";
 import Home from "./components/Home";
 import Logout from "./components/Logout";
+import MyPosts from "./components/MyPosts";
 import axios from "axios";
 
 export default class App extends Component {
@@ -61,6 +62,7 @@ export default class App extends Component {
     let login;
     let signup;
     let createpost;
+    let myposts;
     if (this.state.email !== "") {
       createpost = (
         <li className="nav-item">
@@ -69,6 +71,15 @@ export default class App extends Component {
           </Link>
         </li>
       );
+
+      myposts = (
+        <li className="nav-item">
+          <Link className="nav-link" to={"myposts"}>
+            My Posts
+          </Link>
+        </li>
+      );
+
       logout = (
         <li className="nav-item">
           <Link className="nav-link" to={"/"}>
@@ -95,14 +106,19 @@ export default class App extends Component {
       );
       createpost = null;
       logout = null;
+      myposts=null;
     }
 
     return (
       <Router>
         <div className="App">
-          <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+          <nav className="navbar navbar-expand-lg navbar-light fixed-top" >
             {" "}
-            tecfind.it
+            
+              <Link className="nav-link" to={"/"}>
+                tecfind.it
+              </Link>
+            
             <div className="container">
               {/* <Link className="navbar-brand" to={"/sign-in"}>
                 hola
@@ -120,6 +136,7 @@ export default class App extends Component {
                   {login}
                   {signup}
                   {createpost}
+                  {myposts}
                   {logout}
                 </ul>
               </div>
@@ -137,6 +154,9 @@ export default class App extends Component {
             </Route>
             <Route path="/createpost">
               {this.state.email === "" ? <Redirect to="/" /> : <CreatePost />}
+            </Route>
+            <Route path="/myposts">
+              {this.state.email === "" ? <Redirect to="/" /> : <MyPosts />}
             </Route>
             {/* <Route path="/signup" component={SignUp} /> */}
           </Switch>

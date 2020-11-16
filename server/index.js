@@ -63,6 +63,21 @@ app.get("/api/post/:id", (req, res) => {
   });
 });
 
+/*myposts */
+app.get("/api/myposts/", (req, res) => {
+  if (req.session) {
+    const correo = req.session.user[0].correo;
+    const q = "SELECT P.*, U.nombreUsuario FROM Posts P, Users U WHERE P.correo = U.correo and U.correo = ? order by fecha desc";
+    db.query(q, correo, (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log(result);
+      res.json(result);
+    });
+  }
+});
+
 app.post("/api/signup/", (req, res) => {
   const name = req.body.registerName;
   const email = req.body.registerEmail;
