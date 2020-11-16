@@ -10,6 +10,7 @@ export default class Home extends Component {
       posts: [],
       email: "",
       name: "",
+      search: ''
     };
   }
 
@@ -48,11 +49,30 @@ export default class Home extends Component {
     // this.upd();
   }
 
+  //Search bar
+  updateSearch(event) {
+    this.setState({search: event.target.value});
+  }
+  
+
   render() {
+    let filteredPosts = this.state.posts.filter(
+      (post) => {
+        return post.objectName.toLowerCase().indexOf(
+          this.state.search.toLowerCase()) !== -1;
+      }
+    );
     return (
-      <div style={{ marginTop: "100px" }}>
+      <div style= {{ marginTop: "100px" }}>
         <h1 className="post-title">{"Welcome " + this.state.name}</h1>
-        {this.state.posts.map((post) => {
+        
+        <br/>
+        <input type="text" icon="search" placeholder="Search object type"
+         value={this.state.search} 
+         onChange={this.updateSearch.bind(this)}/>
+        <br/><br/>
+
+        {filteredPosts.map((post) => {
           return (
             <Post
               key={post.postID}

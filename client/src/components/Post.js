@@ -64,15 +64,18 @@ export default class Post extends Component {
                   </ul>
                 </div>
                 <div className="social-avatar">
-                  <a>{this.props.nombreUsuario}</a>
-                  <br />
-                  <small className="text-muted">
-                    {this.formatDate(this.props.fecha)}
-                  </small>
+                  <a>{this.props.nombreUsuario}</a>     
                 </div>
                 <div className="social-body">
                   <p>{this.props.objectName}</p>
-                  <img
+
+                  <small >
+                    <a> Status: {this.props.tag} </a> <br />
+                    <a>Place: {this.props.lugar} </a> <br />
+                    <a>Date found: {this.formatDate(this.props.fecha)} </a> 
+                  </small>
+                  
+                  <img 
                     src={this.props.image}
                     className="img-responsive img-size"
                   />

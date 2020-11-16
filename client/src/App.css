@@ -2,17 +2,17 @@
   text-align: center;
 }
 
-.titulo{
+.titulo {
   text-align: left;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-.searchBar{
-  display:flex;
-  flex-direction:column;
+.searchBar {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
-.searchBar input{
+.searchBar input {
   width: 800px;
   height: 20px;
   margin: 10px;
