@@ -198,6 +198,29 @@ app.delete("/api/post/", (req, res) => {
   }
 });
 
+app.post("/api/createcomment/", (req, res) => {
+  if (req.session) {
+    console.log(req.session);
+    const email = req.session.user[0].correo;
+    const postID = req.body.postID;
+    const date = req.body.date;
+    const comment = req.body.comment
+    console.log(email);
+    const q =
+      "INSERT INTO comments(correo, postID, fecha, texto) values (?, ?, ?, ?)";
+    db.query(q, [email, postID, date, comment], (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send("error, comment not created");
+      }
+      console.log(result);
+      res.send("Comment created");
+    });
+  } else {
+    res.send("Access Unauthorized");
+  }
+});
+
 app.listen(PORT, () => {
   console.log("running on port 5000");
 });
