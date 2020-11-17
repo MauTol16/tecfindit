@@ -8,17 +8,14 @@ export default class MyPosts extends Component {
     super();
     this.state = {
       posts: [],
-      email: "",
       name: "",
+      email: "",
     };
   }
 
   upd = () => {
     axios.get("/api/login").then((response) => {
-      // console.log("response: " + response.data);
-      // console.log(response.data);
       if (response.data.loggedIn === true) {
-        // console.log("im in");
         this.setState({
           email: response.data.user[0].correo,
           name: response.data.user[0].nombreUsuario,
@@ -45,13 +42,12 @@ export default class MyPosts extends Component {
     if (prevState.email !== this.state.email) {
       this.upd();
     }
-    // this.upd();
   }
 
   render() {
     return (
       <div style={{ marginTop: "100px" }}>
-        <h1 className="post-title">{this.state.name+"'s posts"}</h1>
+        <h1 className="post-title">{this.state.name + "'s posts"}</h1>
         {this.state.posts.map((post) => {
           return (
             <Post
@@ -64,6 +60,7 @@ export default class MyPosts extends Component {
               fecha={post.fecha}
               image={post.image}
               nombreUsuario={post.nombreUsuario}
+              email={this.state.email}
             />
           );
         })}

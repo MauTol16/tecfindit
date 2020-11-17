@@ -16,7 +16,6 @@ import Home from "./components/Home";
 import Logout from "./components/Logout";
 import MyPosts from "./components/MyPosts";
 import axios from "axios";
-
 export default class App extends Component {
   constructor() {
     super();
@@ -106,19 +105,17 @@ export default class App extends Component {
       );
       createpost = null;
       logout = null;
-      myposts=null;
+      myposts = null;
     }
 
     return (
       <Router>
         <div className="App">
-          <nav className="navbar navbar-expand-lg navbar-light fixed-top" >
+          <nav className="navbar navbar-expand-lg navbar-light fixed-top">
             {" "}
-            
-              <Link className="nav-link" to={"/"}>
-                tecfind.it
-              </Link>
-            
+            <Link className="nav-link" to={"/"}>
+              tecfind.it
+            </Link>
             <div className="container">
               {/* <Link className="navbar-brand" to={"/sign-in"}>
                 hola
