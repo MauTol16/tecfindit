@@ -49,6 +49,7 @@ app.get("/api/", (req, res) => {
     if (err) {
       console.log(err);
     }
+
     res.json(result);
   });
 });
@@ -67,7 +68,8 @@ app.get("/api/post/:id", (req, res) => {
 app.get("/api/myposts/", (req, res) => {
   if (req.session) {
     const correo = req.session.user[0].correo;
-    const q = "SELECT P.*, U.nombreUsuario FROM Posts P, Users U WHERE P.correo = U.correo and U.correo = ? order by fecha desc";
+    const q =
+      "SELECT P.*, U.nombreUsuario FROM Posts P, Users U WHERE P.correo = U.correo and U.correo = ? order by fecha desc";
     db.query(q, correo, (err, result) => {
       if (err) {
         console.log(err);
@@ -168,6 +170,28 @@ app.post("/api/createpost/", (req, res) => {
       }
       console.log(result);
       res.send("Post created");
+    });
+  } else {
+    res.send("Access Unauthorized");
+  }
+});
+
+app.delete("/api/post/", (req, res) => {
+  // check if user is logged in
+  if (req.session) {
+    const postID = req.body.postID;
+    const deleteComments = "delete from comments where postid = ?";
+    const deletePost = "delete from posts where postid = ?";
+    db.query(deleteComments, postID, (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+    db.query(deletePost, postID, (err, result) => {
+      if (err) {
+        console.log(err);
+      }
+      res.json("post deleted");
     });
   } else {
     res.send("Access Unauthorized");

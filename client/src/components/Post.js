@@ -6,7 +6,6 @@ import Comment from "./Comment";
 export default class Post extends Component {
   constructor() {
     super();
-
     this.state = {
       comments: [],
     };
@@ -14,8 +13,6 @@ export default class Post extends Component {
 
   componentDidMount() {
     axios.get(`/api/post/${this.props.postID}`).then((response) => {
-      // console.log("holaaaa");
-      // console.log(response.data);
       this.setState({
         comments: response.data,
       });
@@ -34,7 +31,27 @@ export default class Post extends Component {
     return [year, month, day].join("-");
   };
 
+  deletePost = () => {
+    axios
+      .delete("/api/post", { data: { postID: this.props.postID } })
+      .then((response) => {
+        window.location.reload();
+      });
+  };
+
   render() {
+    let delButton;
+    // if user logged is the same creator of the post
+    if (this.props.email == this.props.correo) {
+      delButton = (
+        <button className="pull-right social-action" onClick={this.deletePost}>
+          Delete{" "}
+        </button>
+      );
+    } else {
+      delButton = null;
+    }
+
     return (
       <div>
         <div className="container">
@@ -50,7 +67,7 @@ export default class Post extends Component {
               </div>
 
               <div className="social-feed-box" style={{ width: "650px" }}>
-                <div className="pull-right social-action dropdown">
+                {/* <div className="pull-right social-action dropdown">
                   <button
                     data-toggle="dropdown"
                     className="dropdown-toggle btn-white"
@@ -62,20 +79,21 @@ export default class Post extends Component {
                       <a>Config</a>
                     </li>
                   </ul>
-                </div>
+                </div> */}
+                {delButton}
                 <div className="social-avatar">
-                  <a>{this.props.nombreUsuario}</a>     
+                  <a>{this.props.nombreUsuario}</a>
                 </div>
                 <div className="social-body">
                   <p>{this.props.objectName}</p>
 
-                  <small >
+                  <small>
                     <a> Status: {this.props.tag} </a> <br />
                     <a>Place: {this.props.lugar} </a> <br />
-                    <a>Date found: {this.formatDate(this.props.fecha)} </a> 
+                    <a>Date found: {this.formatDate(this.props.fecha)} </a>
                   </small>
-                  
-                  <img 
+
+                  <img
                     src={this.props.image}
                     className="img-responsive img-size"
                   />

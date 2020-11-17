@@ -74,7 +74,7 @@ export default class CreatePost extends Component {
       .post("/api/createpost", this.state, { withCredentials: true })
       .then((response) => {
         alert(response.data);
-        if (response.data === "post created") {
+        if (response.data) {
           window.location.href = "/";
         }
       });
