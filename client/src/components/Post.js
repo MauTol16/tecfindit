@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./Post.css";
 import Comment from "./Comment";
+import CreateComment from "./CreateComment";
 
 export default class Post extends Component {
   constructor() {
@@ -41,6 +42,8 @@ export default class Post extends Component {
 
   render() {
     let delButton;
+    let createComment;
+
     // if user logged is the same creator of the post
     if (this.props.email == this.props.correo) {
       delButton = (
@@ -50,6 +53,19 @@ export default class Post extends Component {
       );
     } else {
       delButton = null;
+    }
+
+    if(this.props.email != "") {
+      createComment = (
+        <div className="social-footer">
+          <CreateComment
+            postID={this.props.postID}
+          />
+        </div>
+      );
+    }
+    else {
+      createComment = null;
     }
 
     return (
@@ -97,12 +113,8 @@ export default class Post extends Component {
                     src={this.props.image}
                     className="img-responsive img-size"
                   />
-                  <div className="btn-group">
-                    <button className="btn btn-white btn-xs">
-                      <i className="fa fa-comments"></i> Comment
-                    </button>
-                  </div>
                 </div>
+                {createComment}
                 <div className="social-footer">
                   {this.state.comments.map((comment) => {
                     return (
