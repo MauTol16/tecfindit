@@ -63,11 +63,11 @@ export default class Home extends Component {
       <div style={{ marginTop: "100px" }}>
         <h1 className="post-title">{"Welcome " + this.state.name}</h1>
 
-        <br />
+        
         <input
           type="text"
           icon="search"
-          placeholder="Search object type"
+          placeholder="Search by object type"
           value={this.state.search}
           onChange={this.updateSearch.bind(this)}
         />
