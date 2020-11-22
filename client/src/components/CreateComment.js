@@ -90,7 +90,7 @@ export default class CreateComment extends Component {
                 className="btn btn-primary btn-block"
                 onClick={this.createcomment}
               >
-                Submit
+                Comment
               </button>
             </div>
           </div>

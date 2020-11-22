@@ -24,10 +24,6 @@ export default class Comment extends Component {
           <br />
           {this.props.texto}
           <br />
-          <a className="small">
-            <i className="fa fa-thumbs-up"></i> 26 Like this!
-          </a>{" "}
-          -
           <small className="text-muted">
             {this.formatDate(this.props.fecha)}
           </small>
