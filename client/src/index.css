@@ -8,12 +8,14 @@ body {
   min-height: 100vh;
   display: flex;
   font-weight: 400;
-  font-family: "Fira Sans", sans-serif;
+
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 .post-title {
-  color:#ffffff;
-  padding-bottom: 50px;
+  color: #ffffff;
+  padding-bottom: 20px;
 }
 
 h2,
@@ -24,7 +26,7 @@ h6,
 label,
 span {
   font-weight: 500;
-  font-family: "Fira Sans", sans-serif;
+
   color: #171a21;
 }
 
@@ -38,7 +40,7 @@ html,
 }
 
 .navbar-light {
-  background-color: #ffffff;
+  background-color: #7689b2;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
 }
 
@@ -88,3 +90,128 @@ html,
   color: #167bff;
 }
 
+.sidebar {
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  left: 0;
+  background: #2c3447;
+}
+
+.sidebar .text {
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 65px;
+  text-align: center;
+  background: #232834;
+}
+
+.postsMenu {
+  margin-left: 250px;
+}
+
+.btn {
+  margin: 0px;
+  font-weight: 600;
+  border: none;
+  margin-left: 30px;
+  width: 200px;
+  text-align: left;
+  background-color: #7689b2;
+  border: none;
+  text-align: Left;
+}
+
+.btns {
+  height: auto;
+  width: 250px;
+  background: #7689b2;
+  border-top: 1px solid #06d6d6;
+  color: #555555;
+  text-align: left;
+}
+
+p.nameStyle {
+  margin: 20px;
+  font-weight: 600;
+  border: "none";
+}
+
+.sideItemStyle {
+  height: auto;
+  min-height: 50px;
+  width: 250px;
+  border-top: 1px solid #cbcbcb;
+  color: #fff;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.media-body {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.barrita {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s;
+  width: 400px;
+  height: 50px;
+  background: white;
+  box-sizing: border-box;
+  border-radius: 25px;
+  border: 4px solid white;
+  padding: 5px;
+}
+
+input.search-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 42.5px;
+  line-height: 30px;
+  outline: 0;
+  border: 0;
+  font-size: 1em;
+  border-radius: 20px;
+  padding: 0 20px;
+}
+
+.fa {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 42.5px;
+  height: 42.5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  color: #07051a;
+  text-align: center;
+  font-size: 1.2em;
+  transition: all 1s;
+}
+
+.barrita:hover {
+  width: 400px;
+  cursor: pointer;
+}
+
+.barrita:hover input {
+  display: block;
+}
+
+.barrita:hover .fa {
+  background: #07051a;
+  color: white;
+}
+
+.btnCreate {
+  margin-left: 0px;
+}
