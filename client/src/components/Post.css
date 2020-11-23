@@ -32,6 +32,7 @@ p {
   border: 1px solid #e7eaec;
   background: #fff;
   margin-bottom: 15px;
+  border-radius: 5px;
 }
 .article .social-feed-box {
   margin-bottom: 0;

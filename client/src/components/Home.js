@@ -112,7 +112,6 @@ export default class Home extends Component {
     return (
       <div style={{ marginTop: "50px" }}>
         <div className="sidebar">
-          <h3 className="text">Alt Search</h3>
 
           <div className="sideItemStyle">
             <p className="nameStyle"> Status </p>
@@ -149,7 +148,7 @@ export default class Home extends Component {
             <i class="fa fa-search"></i> 
           </div>
           <br />
-
+          <div className="postStyle">
           {this.state.filteredPosts.map((post) => {
             return (
               <Post
@@ -166,6 +165,7 @@ export default class Home extends Component {
               />
             );
           })}
+          </div>
         </div>
       </div>
     );

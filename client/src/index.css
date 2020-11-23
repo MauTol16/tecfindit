@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  background: #171a21 !important;
+  background: #2c2f33 !important;
   min-height: 100vh;
   display: flex;
   font-weight: 400;
@@ -40,8 +40,7 @@ html,
 }
 
 .navbar-light {
-  background-color: #7689b2;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  background-color: #23272a;
 }
 
 .auth-wrapper {
@@ -95,7 +94,7 @@ html,
   width: 250px;
   height: 100%;
   left: 0;
-  background: #2c3447;
+  background: #23272a;
 }
 
 .sidebar .text {
@@ -121,13 +120,14 @@ html,
   background-color: #7689b2;
   border: none;
   text-align: Left;
+  
 }
 
 .btns {
   height: auto;
   width: 250px;
-  background: #7689b2;
-  border-top: 1px solid #06d6d6;
+  background: #35393d;
+  border-top: 1px solid #23272a;
   color: #555555;
   text-align: left;
 }
@@ -142,7 +142,6 @@ p.nameStyle {
   height: auto;
   min-height: 50px;
   width: 250px;
-  border-top: 1px solid #cbcbcb;
   color: #fff;
   display: flex;
   align-items: flex-start;
@@ -214,4 +213,16 @@ input.search-box {
 
 .btnCreate {
   margin-left: 0px;
+}
+
+.postStyle{
+  padding-left: 150px;
+}
+
+button.btn{
+  color:#ffff;
+}
+
+.navbar-light .navbar-nav .nav-link{
+  color:#ffffff;
 }
