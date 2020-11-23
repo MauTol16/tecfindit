@@ -156,7 +156,7 @@ export default class CreatePost extends Component {
 
             <button
               type="submit"
-              className="btn btn-primary btn-block"
+              className="btn btn-primary btn-block btnCreate"
               onClick={this.createpost}
             >
               Submit

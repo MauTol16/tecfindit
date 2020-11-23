@@ -54,8 +54,11 @@ app.get("/api/", (req, res) => {
   });
 });
 
+//Para cada post
 app.get("/api/post/:id", (req, res) => {
-  const q = "select * from comments where postid = ?";
+  //const q = "select * from comments where postid = ?";
+  const q =
+    "SELECT C.*, U.nombreUsuario FROM comments C, Users U WHERE C.correo = U.correo AND postid = ? order by C.fecha desc";
   db.query(q, req.params.id, (err, result) => {
     if (err) {
       console.log(err);
@@ -159,7 +162,7 @@ app.post("/api/createpost/", (req, res) => {
     const place = req.body.place;
     const date = req.body.fDate;
     const image = req.body.image;
-    const tag = "Not Found";
+    const tag = "Open";
     console.log(email);
     const q =
       "INSERT INTO posts(correo, tag, objectName, lugar, fecha,image) values (?, ?, ?, ?, ?, ?)";

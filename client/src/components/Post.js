@@ -119,6 +119,7 @@ export default class Post extends Component {
                   {this.state.comments.map((comment) => {
                     return (
                       <Comment
+                        nombreUsuario = {comment.nombreUsuario}
                         key={comment.commentid}
                         commentid={comment.commentid}
                         correo={comment.correo}

@@ -3,8 +3,6 @@ import axios from "axios";
 // import "./Home.css";
 import Post from "./Post";
 
-
-
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -41,6 +39,7 @@ export default class Home extends Component {
     axios.get("/api/").then((response) => {
       this.setState({
         posts: response.data,
+        filteredPosts: response.data,
       });
     });
   }
@@ -54,69 +53,101 @@ export default class Home extends Component {
   // Filtering with Search bar
   updateSearch(event) {
     this.setState({ search: event.target.value });
+    
+    this.setState({
+      filteredPosts: this.state.filteredPosts.filter((post) => {
+        return (
+          post.objectName
+            .toLowerCase()
+            .indexOf(this.state.search.toLowerCase()) !== -1
+        );
+      }),
+    });
+
+    if(event.target.value === ""){
+      this.setState({ filteredPosts: this.state.posts });
+    }
   }
 
   //Fitering for tags
-  handleTag=(e)=>{
+  handleTag = (e) => {
     console.log(e.target.value);
-    this.searchTag = true;
-    this.Tag = e.target.value;
+    this.state.searchTag = true;
+    this.state.Tag = e.target.value;
 
-    if (e.target.value === "All"){
-      this.state.filteredPosts = this.state.posts;
+    this.setState({ search: "" })
+
+    if (e.target.value === "All" ) {
+      this.setState({ filteredPosts: this.state.posts });
+    } else {
+      this.setState({
+        filteredPosts: this.state.posts.filter(
+          (item) => item.tag === e.target.value
+        ),
+      });
     }
-    else{
-      this.state.filteredPosts=this.state.posts.filter(item=>item.Tag===e.target.value)
+
+  };
+
+  //Fitering for tags
+  handlePlace = (e) => {
+    console.log(e.target.value);
+
+    this.setState({ search: "" })
+
+    if (e.target.value === "All" ) {
+      this.setState({ filteredPosts: this.state.posts });
+    } else {
+      this.setState({
+        filteredPosts: this.state.posts.filter(
+          (item) => item.lugar === e.target.value
+        ),
+      });
     }
-      
-    this.setState({ filteredPosts:filteredPosts});
-  }
+
+  };
 
   render() {
-
-    //Filters
-    this.state.filteredPosts = this.state.posts.filter((post) => {
-        return (
-          post.objectName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-        );
-    });
+    
     return (
       <div style={{ marginTop: "50px" }}>
+        <div className="sidebar">
+          <h3 className="text">Alt Search</h3>
 
-        <div className="sidebar" > 
-            <h3 className = "text">Alt Search</h3>
-
-             <div className = "sideItemStyle">
-              <p className="nameStyle"> Tags </p>
-                <div className= "btns">
-                    <button className="btn" value="Open" onClick={this.handleTag}>Open</button>
-                    <button className="btn" value="Closed" onClick={this.handleTag}>Closed</button>
-                    <button className="btn" value="Not Found" onClick={this.handleTag}>Not Found</button>
-                </div>
+          <div className="sideItemStyle">
+            <p className="nameStyle"> Status </p>
+            <div className="btns">
+            <button className="btn" value="All" onClick={this.handleTag} autoFocus> All </button>
+              <button className="btn" value="Open" onClick={this.handleTag}> Open </button>
+              <button className="btn" value="Closed" onClick={this.handleTag}> Closed </button>
+              <button className="btn" value="To be collected" onClick={this.handleTag}> To be collected </button>
             </div>
-            <div className = "sideItemStyle">
-              <p className="nameStyle"> Place </p>
-                <div className= "btns">
-                    <button className="btn" value="A1" >A1</button>
-                    <button className="btn" value="A4" >A4</button>
-                    <button className="btn" value="Centrales" >Centrales</button>
-                    <button className="btn" value="Library" >Library</button>
-                </div>
+          </div>
+          <div className="sideItemStyle">
+            <p className="nameStyle"> Place </p>
+            <div className="btns">
+            <button className="btn" value="All" onClick={this.handlePlace}> All </button>
+              <button className="btn" value="A2" onClick={this.handlePlace}> A2 </button>
+              <button className="btn" value="A4" onClick={this.handlePlace}>  A4 </button>
+              <button className="btn" value="Centrales" onClick={this.handlePlace}>  Centrales  </button>
+              <button className="btn" value="Biblioteca" onClick={this.handlePlace}> Library </button>
             </div>
+          </div>
         </div>
 
-        
-        <div className = "postsMenu">
+        <div className="postsMenu">
           <h1 className="post-title">{"Welcome " + this.state.name}</h1>
-          <br />
-          <input
-            type="text"
-            icon="search"
-            placeholder="Search object type"
-            value={this.state.search}
-            onChange={this.updateSearch.bind(this)}
-          />
-          <br />
+          <br></br>
+          <div className = "barrita">
+            <input class="search-box"
+              type="text"
+              icon="search"
+              placeholder="Search object type"
+              value={this.state.search}
+              onChange={this.updateSearch.bind(this)}
+            />
+            <i class="fa fa-search"></i> 
+          </div>
           <br />
 
           {this.state.filteredPosts.map((post) => {
@@ -136,8 +167,6 @@ export default class Home extends Component {
             );
           })}
         </div>
-        
-       
       </div>
     );
   }
