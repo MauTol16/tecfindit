@@ -12,7 +12,7 @@ body {
 }
 
 .post-title {
-  color:#ffffff;
+  color: #ffffff;
   padding-bottom: 50px;
 }
 
@@ -88,3 +88,61 @@ html,
   color: #167bff;
 }
 
+.sidebar {
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  left: 0;
+  background: #2c3447;
+}
+
+.sidebar .text {
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 65px;
+  text-align: center;
+  background: #232834;
+}
+
+.postsMenu {
+  margin-left: 250px;
+}
+
+.btn {
+  margin: 0px;
+  font-weight: 600;
+  border: none;
+  margin-left: 30px;
+  width: 200px;
+  text-align: left;
+  background-color: #7689b2;
+  border: none;
+  text-align: Left;
+}
+
+.btns {
+  height: auto;
+  width: 250px;
+  background: #7689b2;
+  border-top: 1px solid #06d6d6;
+  color: #555555;
+  text-align: left;
+}
+
+p.nameStyle {
+  margin: 20px;
+  font-weight: 600;
+  border: "none";
+}
+
+.sideItemStyle {
+  height: auto;
+  min-height: 50px;
+  width: 250px;
+  border-top: 1px solid #cbcbcb;
+  color: #fff;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
