@@ -9,17 +9,27 @@ export default class SignUp extends Component {
       registerName: "",
       registerEmail: "",
       registerPassword: "",
+      success: "",
     };
   }
 
   signUp = (e) => {
+    this.setState({ sucess: "" });
     e.preventDefault();
-    axios.post("/api/signup", this.state, {withCredentials: true}).then((response) => {
-      alert(response.data);
-    });
+    axios
+      .post("/api/signup", this.state, { withCredentials: true })
+      .then((response) => {
+        this.setState({ success: response.data });
+      });
   };
 
   render() {
+    let successColor;
+    if (this.state.success === "User succesfully registered") {
+      successColor = "green";
+    } else {
+      successColor = "red";
+    }
     return (
       <div className="auth-wrapper">
         <div className="auth-inner">
@@ -33,7 +43,7 @@ export default class SignUp extends Component {
                 className="form-control"
                 placeholder="Full name"
                 onChange={(e) =>
-                  this.setState({ registerName: e.target.value })
+                  this.setState({ registerName: e.target.value, success: "" })
                 }
               />
             </div>
@@ -45,7 +55,7 @@ export default class SignUp extends Component {
                 className="form-control"
                 placeholder="Enter email"
                 onChange={(e) =>
-                  this.setState({ registerEmail: e.target.value })
+                  this.setState({ registerEmail: e.target.value, success: "" })
                 }
               />
             </div>
@@ -57,11 +67,16 @@ export default class SignUp extends Component {
                 className="form-control"
                 placeholder="Enter password"
                 onChange={(e) =>
-                  this.setState({ registerPassword: e.target.value })
+                  this.setState({
+                    registerPassword: e.target.value,
+                    success: "",
+                  })
                 }
               />
             </div>
-
+            <p style={{ color: successColor, paddingBottom: "5px" }}>
+              {this.state.success}
+            </p>
             <button
               type="submit"
               className="btn btn-primary btn-block"

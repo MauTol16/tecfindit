@@ -134,11 +134,11 @@ app.post("/api/login/", (req, res) => {
           console.log(req.session.user);
           res.send("logged in");
         } else {
-          res.send({ message: "Wrong email or password." });
+          res.send({ message: "Wrong password" });
         }
       });
     } else {
-      res.send({ message: "User doesn't exist." });
+      res.send({ message: "User doesn't exist" });
     }
   });
 });
