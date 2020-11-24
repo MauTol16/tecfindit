@@ -3,7 +3,9 @@ import axios from "axios";
 import "./Post.css";
 import Comment from "./Comment";
 import CreateComment from "./CreateComment";
-
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
+import Button from "react-bootstrap/Button";
 export default class Post extends Component {
   constructor() {
     super();
@@ -40,31 +42,66 @@ export default class Post extends Component {
       });
   };
 
+  changeStatus = (e) => {
+    const tag = e.target.textContent;
+    axios
+      .put("/api/post/status", { data: { tag, postID: this.props.postID } })
+      .then((response) => {
+        console.log("post status changed");
+        window.location.reload();
+      });
+  };
+
   render() {
     let delButton;
     let createComment;
+    let status;
 
     // if user logged is the same creator of the post
     if (this.props.email == this.props.correo) {
+      status = (
+        <div className="dropdown">
+          <DropdownButton id="dropdown-basic-button" title={this.props.tag}>
+            <Dropdown.Item href="#" onClick={this.changeStatus}>
+              Open
+            </Dropdown.Item>
+            <Dropdown.Item href="#" onClick={this.changeStatus}>
+              Closed
+            </Dropdown.Item>
+            <Dropdown.Item href="#" onClick={this.changeStatus}>
+              To be collected
+            </Dropdown.Item>
+          </DropdownButton>
+        </div>
+      );
       delButton = (
-        <button className="pull-right social-action" onClick={this.deletePost}>
+        <button
+          className="pull-right social-action btn btn-danger w-auto"
+          onClick={this.deletePost}
+        >
           Delete{" "}
         </button>
       );
     } else {
       delButton = null;
-    }
-
-    if(this.props.email != "") {
-      createComment = (
-        <div className="social-footer">
-          <CreateComment
-            postID={this.props.postID}
-          />
+      status = (
+        <div>
+          <Button variant="primary" size="md" disabled>
+            {this.props.tag}
+          </Button>
+          <br></br>
         </div>
       );
     }
-    else {
+
+    // user is logged
+    if (this.props.email != "") {
+      createComment = (
+        <div className="social-footer">
+          <CreateComment postID={this.props.postID} />
+        </div>
+      );
+    } else {
       createComment = null;
     }
 
@@ -76,6 +113,7 @@ export default class Post extends Component {
               <div className="social-avatar">
                 <a>
                   <img
+                    className="avatar-img"
                     alt="image"
                     src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"
                   />
@@ -83,19 +121,6 @@ export default class Post extends Component {
               </div>
 
               <div className="social-feed-box" style={{ width: "650px" }}>
-                {/* <div className="pull-right social-action dropdown">
-                  <button
-                    data-toggle="dropdown"
-                    className="dropdown-toggle btn-white"
-                  >
-                    <i className="fa fa-angle-down"></i>
-                  </button>
-                  <ul className="dropdown-menu m-t-xs">
-                    <li>
-                      <a>Config</a>
-                    </li>
-                  </ul>
-                </div> */}
                 {delButton}
                 <div className="social-avatar">
                   <a>{this.props.nombreUsuario}</a>
@@ -104,22 +129,22 @@ export default class Post extends Component {
                   <p>{this.props.objectName}</p>
 
                   <small>
-                    <a> Status: {this.props.tag} </a> <br />
+                    <a> {status}</a>
                     <a>Place: {this.props.lugar} </a> <br />
                     <a>Date found: {this.formatDate(this.props.fecha)} </a>
                   </small>
 
                   <img
                     src={this.props.image}
-                    className="img-responsive img-size"
+                    className="img-responsive img-size post-img"
                   />
                 </div>
-                {createComment}
+                {/* {createComment} */}
                 <div className="social-footer">
                   {this.state.comments.map((comment) => {
                     return (
                       <Comment
-                        nombreUsuario = {comment.nombreUsuario}
+                        nombreUsuario={comment.nombreUsuario}
                         key={comment.commentid}
                         commentid={comment.commentid}
                         correo={comment.correo}
@@ -131,6 +156,7 @@ export default class Post extends Component {
                     );
                   })}
                 </div>
+                {createComment}
               </div>
             </div>
           </div>

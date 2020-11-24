@@ -21,7 +21,7 @@ p {
 .social-feed-separated .social-avatar img {
   width: 52px;
   height: 52px;
-  border: 1px solid #e7eaec;
+  /* border: 1px solid #e7eaec; */
 }
 .social-feed-separated .social-feed-box .social-avatar {
   padding: 15px 15px 0 15px;
@@ -45,6 +45,10 @@ p {
 .article .social-feed-box p {
   font-size: 13px;
   line-height: 18px;
+}
+
+.dropdown {
+  margin: 0 auto;
 }
 .social-action {
   margin: 15px;
@@ -108,7 +112,10 @@ p {
   width: 100%;
 }
 
-img {
+.avatar-img {
+  border-radius: 50%;
+}
+.post-img {
   margin-top: 10px;
 }
 
@@ -161,4 +168,8 @@ img {
   font-size: 90%;
   background: #ffffff;
   padding: 10px 15px;
+}
+
+.fecha-comment {
+  padding-left: 10px !important;
 }

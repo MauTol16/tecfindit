@@ -207,7 +207,7 @@ app.post("/api/createcomment/", (req, res) => {
     const email = req.session.user[0].correo;
     const postID = req.body.postID;
     const date = req.body.date;
-    const comment = req.body.comment
+    const comment = req.body.comment;
     console.log(email);
     const q =
       "INSERT INTO comments(correo, postID, fecha, texto) values (?, ?, ?, ?)";
@@ -221,6 +221,25 @@ app.post("/api/createcomment/", (req, res) => {
     });
   } else {
     res.send("Access Unauthorized");
+  }
+});
+
+app.put("/api/post/status", (req, res) => {
+  if (req.session) {
+    const tag = req.body.data.tag;
+    const postID = req.body.data.postID;
+    console.log(tag);
+    const q = "UPDATE posts SET tag = ? WHERE postID = ?";
+    db.query(q, [tag, postID], (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send("error, status not updated");
+      }
+      console.log(result);
+      res.send("Post status updated");
+    });
+  } else {
+    res.send("Acess Unauthorized");
   }
 });
 

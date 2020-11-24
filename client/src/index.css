@@ -8,7 +8,6 @@ body {
   min-height: 100vh;
   display: flex;
   font-weight: 400;
-
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -93,6 +92,8 @@ html,
   position: fixed;
   width: 250px;
   height: 100%;
+  z-index: 1;
+  top: 50px;
   left: 0;
   background: #23272a;
 }
@@ -114,22 +115,34 @@ html,
   margin: 0px;
   font-weight: 600;
   border: none;
-  margin-left: 30px;
-  width: 200px;
   text-align: left;
   background-color: #7689b2;
   border: none;
   text-align: Left;
-  
+}
+
+.btnLeft {
+  display: block;
+  width: 200px;
+  margin-left: 30px;
+}
+
+.btn:focus {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
 }
 
 .btns {
   height: auto;
-  width: 250px;
   background: #35393d;
   border-top: 1px solid #23272a;
   color: #555555;
   text-align: left;
+  overflow-y: auto;
+}
+
+.btns2 {
+  height: 400px;
 }
 
 p.nameStyle {
@@ -139,7 +152,6 @@ p.nameStyle {
 }
 
 .sideItemStyle {
-  height: auto;
   min-height: 50px;
   width: 250px;
   color: #fff;
@@ -215,14 +227,22 @@ input.search-box {
   margin-left: 0px;
 }
 
-.postStyle{
+.postStyle {
   padding-left: 150px;
 }
 
-button.btn{
-  color:#ffff;
+button.btn {
+  color: #ffff;
 }
 
-.navbar-light .navbar-nav .nav-link{
-  color:#ffffff;
+.navbar-light .navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.hola {
+  color: white !important;
+}
+
+.no-posts {
+  color: #ffffff !important;
 }
