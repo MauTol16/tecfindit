@@ -47,23 +47,30 @@ export default class MyPosts extends Component {
   render() {
     return (
       <div style={{ marginTop: "100px" }}>
-        <h1 className="post-title">{this.state.name + "'s posts"}</h1>
-        {this.state.posts.map((post) => {
-          return (
-            <Post
-              key={post.postID}
-              postID={post.postID}
-              correo={post.correo}
-              tag={post.tag}
-              objectName={post.objectName}
-              lugar={post.lugar}
-              fecha={post.fecha}
-              image={post.image}
-              nombreUsuario={post.nombreUsuario}
-              email={this.state.email}
-            />
-          );
-        })}
+        <h1 className="post-title">My posts</h1>
+
+        {this.state.posts && this.state.posts.length > 0 ? (
+          <div className="postStyle">
+            {this.state.posts.map((post) => {
+              return (
+                <Post
+                  key={post.postID}
+                  postID={post.postID}
+                  correo={post.correo}
+                  tag={post.tag}
+                  objectName={post.objectName}
+                  lugar={post.lugar}
+                  fecha={post.fecha}
+                  image={post.image}
+                  nombreUsuario={post.nombreUsuario}
+                  email={this.state.email}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <h2 className="no-posts">You have no posts 😖</h2>
+        )}
       </div>
     );
   }

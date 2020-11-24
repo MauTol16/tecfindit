@@ -53,7 +53,7 @@ export default class Home extends Component {
   // Filtering with Search bar
   updateSearch(event) {
     this.setState({ search: event.target.value });
-    
+
     this.setState({
       filteredPosts: this.state.filteredPosts.filter((post) => {
         return (
@@ -64,7 +64,7 @@ export default class Home extends Component {
       }),
     });
 
-    if(event.target.value === ""){
+    if (event.target.value === "") {
       this.setState({ filteredPosts: this.state.posts });
     }
   }
@@ -75,9 +75,9 @@ export default class Home extends Component {
     this.state.searchTag = true;
     this.state.Tag = e.target.value;
 
-    this.setState({ search: "" })
+    this.setState({ search: "" });
 
-    if (e.target.value === "All" ) {
+    if (e.target.value === "All") {
       this.setState({ filteredPosts: this.state.posts });
     } else {
       this.setState({
@@ -86,16 +86,15 @@ export default class Home extends Component {
         ),
       });
     }
-
   };
 
   //Fitering for tags
   handlePlace = (e) => {
     console.log(e.target.value);
 
-    this.setState({ search: "" })
+    this.setState({ search: "" });
 
-    if (e.target.value === "All" ) {
+    if (e.target.value === "All") {
       this.setState({ filteredPosts: this.state.posts });
     } else {
       this.setState({
@@ -104,32 +103,213 @@ export default class Home extends Component {
         ),
       });
     }
-
   };
 
   render() {
-    
     return (
       <div style={{ marginTop: "50px" }}>
         <div className="sidebar">
-
           <div className="sideItemStyle">
             <p className="nameStyle"> Status </p>
             <div className="btns">
-            <button className="btn" value="All" onClick={this.handleTag} autoFocus> All </button>
-              <button className="btn" value="Open" onClick={this.handleTag}> Open </button>
-              <button className="btn" value="Closed" onClick={this.handleTag}> Closed </button>
-              <button className="btn" value="To be collected" onClick={this.handleTag}> To be collected </button>
+              <button
+                className="btn btnLeft"
+                value="All"
+                onClick={this.handleTag}
+                autoFocus
+              >
+                {" "}
+                All{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="Open"
+                onClick={this.handleTag}
+              >
+                {" "}
+                Open{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="Closed"
+                onClick={this.handleTag}
+              >
+                {" "}
+                Closed{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="To be collected"
+                onClick={this.handleTag}
+              >
+                {" "}
+                To be collected{" "}
+              </button>
             </div>
           </div>
           <div className="sideItemStyle">
             <p className="nameStyle"> Place </p>
-            <div className="btns">
-            <button className="btn" value="All" onClick={this.handlePlace}> All </button>
-              <button className="btn" value="A2" onClick={this.handlePlace}> A2 </button>
-              <button className="btn" value="A4" onClick={this.handlePlace}>  A4 </button>
-              <button className="btn" value="Centrales" onClick={this.handlePlace}>  Centrales  </button>
-              <button className="btn" value="Biblioteca" onClick={this.handlePlace}> Library </button>
+            <div className="btns2 btns">
+              <button
+                className="btn btnLeft"
+                value="All"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                All{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="A1"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                A1{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="A2"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                A2{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="A3"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                A3{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="A4"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                A4{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="A6"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                A6{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="A7"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                A7{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="CIAP"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                CIAP{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="Centrales"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                Centrales{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="La Carreta"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                La Carreta{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="Jubileo"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                Jubileo{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="E1"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                E1{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="E4"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                E4{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="E6"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                E6{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="E7"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                E7{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="Bibliotec"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                Bibliotec{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="Rectoria"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                Rectoria{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="CETEC"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                CETEC{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="JDC"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                JDC{" "}
+              </button>
+              <button
+                className="btn btnLeft"
+                value="Others"
+                onClick={this.handlePlace}
+              >
+                {" "}
+                Others{" "}
+              </button>
             </div>
           </div>
         </div>
@@ -137,35 +317,40 @@ export default class Home extends Component {
         <div className="postsMenu">
           <h1 className="post-title">{"Welcome " + this.state.name}</h1>
           <br></br>
-          <div className = "barrita">
-            <input class="search-box"
+          <div className="barrita">
+            <input
+              className="search-box"
               type="text"
               icon="search"
               placeholder="Search object type"
               value={this.state.search}
               onChange={this.updateSearch.bind(this)}
             />
-            <i class="fa fa-search"></i> 
+            <i className="fa fa-search"></i>
           </div>
           <br />
-          <div className="postStyle">
-          {this.state.filteredPosts.map((post) => {
-            return (
-              <Post
-                key={post.postID}
-                postID={post.postID}
-                correo={post.correo}
-                tag={post.tag}
-                objectName={post.objectName}
-                lugar={post.lugar}
-                fecha={post.fecha}
-                image={post.image}
-                nombreUsuario={post.nombreUsuario}
-                email={this.state.email}
-              />
-            );
-          })}
-          </div>
+          {this.state.posts && this.state.posts.length > 0 ? (
+            <div className="postStyle">
+              {this.state.filteredPosts.map((post) => {
+                return (
+                  <Post
+                    key={post.postID}
+                    postID={post.postID}
+                    correo={post.correo}
+                    tag={post.tag}
+                    objectName={post.objectName}
+                    lugar={post.lugar}
+                    fecha={post.fecha}
+                    image={post.image}
+                    nombreUsuario={post.nombreUsuario}
+                    email={this.state.email}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <h2 className="no-posts">Loading posts 😈</h2>
+          )}
         </div>
       </div>
     );

@@ -21,13 +21,12 @@ export default class Comment extends Component {
         </a>
         <div className="media-body">
           <a href="#">{this.props.nombreUsuario} </a>
-          <small className="text-muted">
-              - {this.formatDate(this.props.fecha)}
+          <small className="fecha-comment text-muted">
+            {this.formatDate(this.props.fecha)}
           </small>
           <br />
           {this.props.texto}
           <br />
-         
         </div>
       </div>
     );

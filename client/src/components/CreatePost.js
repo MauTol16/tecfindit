@@ -2,7 +2,41 @@ import React, { Component } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Select from "react-select";
+import {
+  aulasOptions,
+  cafeteriasOptions,
+  estacionamientosOptions,
+  edificiosOptions,
+  othersOptions,
+  groupedOptions,
+} from "../data/data";
 import axios from "axios";
+
+const groupStyles = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+};
+const groupBadgeStyles = {
+  backgroundColor: "#EBECF0",
+  borderRadius: "2em",
+  color: "#172B4D",
+  display: "inline-block",
+  fontSize: 12,
+  fontWeight: "normal",
+  lineHeight: "1",
+  minWidth: 1,
+  padding: "0.16666666666667em 0.5em",
+  textAlign: "center",
+};
+
+const formatGroupLabel = (data) => (
+  <div style={groupStyles}>
+    <span>{data.label}</span>
+    <span style={groupBadgeStyles}>{data.options.length}</span>
+  </div>
+);
 
 export default class CreatePost extends Component {
   constructor(props) {
@@ -120,8 +154,18 @@ export default class CreatePost extends Component {
 
             <div className="form-group">
               <label>Place</label>
-              <input
-                type="text"
+              <Select
+                defaultValue={aulasOptions[0]}
+                options={groupedOptions}
+                formatGroupLabel={formatGroupLabel}
+                onChange={(e) => {
+                  this.setState({
+                    place: e.value,
+                  });
+                }}
+              />
+              {/* <input
+                type="text" 
                 className="form-control"
                 placeholder="Enter place description"
                 onChange={(e) => {
@@ -129,7 +173,7 @@ export default class CreatePost extends Component {
                     place: e.target.value,
                   });
                 }}
-              />
+              /> */}
             </div>
 
             <div className="form-group">

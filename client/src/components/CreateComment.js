@@ -84,7 +84,7 @@ export default class CreateComment extends Component {
                 });
               }}
             />
-            <div class="input-group-append">
+            <div className="input-group-append">
               <button
                 type="submit"
                 className="btn btn-primary btn-block"

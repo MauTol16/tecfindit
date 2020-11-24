@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import {
   BrowserRouter as Router,
   Redirect,
@@ -65,7 +67,7 @@ export default class App extends Component {
     if (this.state.email !== "") {
       createpost = (
         <li className="nav-item">
-          <Link className="nav-link" to={"/createpost"}>
+          <Link className="nav-link hola" to={"/createpost"}>
             Create post
           </Link>
         </li>
@@ -73,7 +75,7 @@ export default class App extends Component {
 
       myposts = (
         <li className="nav-item">
-          <Link className="nav-link" to={"myposts"}>
+          <Link className="nav-link hola" to={"myposts"}>
             My Posts
           </Link>
         </li>
@@ -81,7 +83,7 @@ export default class App extends Component {
 
       logout = (
         <li className="nav-item">
-          <Link className="nav-link" to={"/"}>
+          <Link className="nav-link hola" to={"/"}>
             <Logout />
           </Link>
         </li>
@@ -91,14 +93,14 @@ export default class App extends Component {
     } else {
       signup = (
         <li className="nav-item">
-          <Link className="nav-link" to={"/signup"}>
+          <Link className="nav-link hola" to={"/signup"}>
             Sign up
           </Link>
         </li>
       );
       login = (
         <li className="nav-item">
-          <Link className="nav-link" to={"/login"}>
+          <Link className="nav-link hola" to={"/login"}>
             Log in
           </Link>
         </li>
@@ -114,7 +116,7 @@ export default class App extends Component {
           <nav className="navbar navbar-expand-lg navbar-light fixed-top">
             {" "}
             <Link className="nav-link" to={"/"}>
-              tecfind.it
+              tecfind.it🔎
             </Link>
             <div className="container">
               {/* <Link className="navbar-brand" to={"/sign-in"}>
@@ -126,7 +128,7 @@ export default class App extends Component {
               >
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item">
-                    <Link className="nav-link" to={"/"}>
+                    <Link className="nav-link hola" to={"/"}>
                       Home
                     </Link>
                   </li>
