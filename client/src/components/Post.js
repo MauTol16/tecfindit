@@ -130,8 +130,8 @@ export default class Post extends Component {
 
                   <small>
                     <a> {status}</a>
-                    <a>Place: {this.props.lugar} </a> <br />
-                    <a>Date found: {this.formatDate(this.props.fecha)} </a>
+                    <a><strong>Place:</strong> {this.props.lugar} </a> <br />
+                    <a><strong>Date found:</strong> {this.formatDate(this.props.fecha)} </a>
                   </small>
 
                   <img

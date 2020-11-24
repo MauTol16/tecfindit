@@ -349,7 +349,7 @@ export default class Home extends Component {
               })}
             </div>
           ) : (
-            <h2 className="no-posts">Loading posts 😈</h2>
+            <h2 className="no-posts">Loading posts 😈<br></br><br></br><div class="lds-dual-ring"></div></h2>
           )}
         </div>
       </div>
