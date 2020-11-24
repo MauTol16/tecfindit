@@ -51,6 +51,7 @@ export default class CreatePost extends Component {
       name: "",
       email: "",
       ok: false,
+      imgLoaded: "",
     };
   }
 
@@ -107,7 +108,6 @@ export default class CreatePost extends Component {
     axios
       .post("/api/createpost", this.state, { withCredentials: true })
       .then((response) => {
-        alert(response.data);
         if (response.data) {
           window.location.href = "/";
         }
@@ -115,6 +115,9 @@ export default class CreatePost extends Component {
   };
 
   getImageURL = (e) => {
+    this.setState({
+      imgLoaded: "",
+    });
     const id = `Client-ID ${process.env.REACT_APP_CLIENT_ID}`;
     const data = new FormData();
     data.append("image", e.target.files[0]);
@@ -127,6 +130,7 @@ export default class CreatePost extends Component {
     axios.post("https://api.imgur.com/3/image", data, config).then((resp) => {
       this.setState({
         image: resp.data.data.link,
+        imgLoaded: "Your image is uploaded!",
       });
     });
   };
@@ -189,13 +193,14 @@ export default class CreatePost extends Component {
             <div className="form-group">
               <label>Image</label>{" "}
               <small className="text-muted">
-                wait 3 seconds for image to load
+                wait for upload success message
               </small>
               <input
                 type="file"
                 className="form-control"
                 onChange={this.getImageURL}
               />{" "}
+              <p style={{ color: "green" }}>{this.state.imgLoaded}</p>
             </div>
 
             <button

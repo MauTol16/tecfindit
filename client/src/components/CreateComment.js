@@ -59,7 +59,6 @@ export default class CreateComment extends Component {
     axios
       .post("/api/createcomment", this.state, { withCredentials: true })
       .then((response) => {
-        alert(response.data);
         if (response.data) {
           window.location.href = "/";
         }
