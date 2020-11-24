@@ -143,7 +143,6 @@ export default class App extends Component {
           </nav>
 
           <Switch>
-            <Route exact path="/" component={Home} />
             {/* <Route path="/login" component={Login} /> */}
             <Route path="/login">
               {this.state.email !== "" ? <Redirect to="/" /> : <Login />}
@@ -151,12 +150,14 @@ export default class App extends Component {
             <Route path="/signup">
               {this.state.email !== "" ? <Redirect to="/" /> : <SignUp />}
             </Route>
-            <Route path="/createpost">
+            <Route exact path="/createpost">
               {this.state.email !== "" ? <CreatePost /> : <Redirect to="/" />}
             </Route>
             <Route path="/myposts">
               {this.state.email === "" ? <Redirect to="/" /> : <MyPosts />}
             </Route>
+            <Route exact path="/" component={Home} />
+
             {/* <Route path="/signup" component={SignUp} /> */}
           </Switch>
         </div>

@@ -107,7 +107,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div style={{ marginTop: "50px" }}>
+      <div style={{ marginTop: "50px", paddingBottom: "30px" }}>
         <div className="sidebar">
           <div className="sideItemStyle">
             <p className="nameStyle"> Status </p>

@@ -10,6 +10,7 @@ export default class Login extends Component {
       loginEmail: "",
       loginPassword: "",
       loginStatus: "",
+      success: "",
     };
   }
 
@@ -18,12 +19,19 @@ export default class Login extends Component {
     axios
       .post("/api/login", this.state, { withCredentials: true })
       .then((response) => {
-        // alert(response.data);
-        window.location.reload();
-        if (response.data.message) {
-          this.state.loginStatus = response.data.message;
+        console.log(response.data);
+        if (
+          response.data.message === "Wrong password" ||
+          response.data.message === "User doesn't exist"
+        ) {
+          this.setState({ success: response.data.message });
         } else {
-          this.state.loginStatus = response.data[0].email;
+          window.location.reload();
+          if (response.data.message) {
+            this.state.loginStatus = response.data.message;
+          } else {
+            this.state.loginStatus = response.data[0].email;
+          }
         }
       });
   };
@@ -77,6 +85,9 @@ export default class Login extends Component {
                 </label>
               </div>
             </div>
+            <p style={{ color: "red", paddingBottom: "5px" }}>
+              {this.state.success}
+            </p>
 
             <button
               type="submit"
@@ -86,7 +97,13 @@ export default class Login extends Component {
               Submit
             </button>
             <p className="forgot-password text-right">
-              Forgot <a href= "#" onClick={()=>alert("A recovery email has been sent")}>password?</a>
+              Forgot{" "}
+              <a
+                href="#"
+                onClick={() => alert("A recovery email has been sent")}
+              >
+                password?
+              </a>
             </p>
           </form>
         </div>

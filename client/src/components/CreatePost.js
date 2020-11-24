@@ -44,7 +44,7 @@ export default class CreatePost extends Component {
     let temp = this.formatDate(new Date());
     this.state = {
       objName: "",
-      place: "",
+      place: "A1",
       date: new Date(),
       image: "",
       fDate: temp,
