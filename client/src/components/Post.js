@@ -135,11 +135,11 @@ export default class Post extends Component {
               <div className="social-feed-box" style={{ width: "650px" }}>
                 {delButton}
                 <div className="social-avatar">
-                  <a>{this.props.nombreUsuario}</a>
+                  <div className="usuarioPost"><a>{this.props.nombreUsuario}</a></div>
                 </div>
                 <div className="social-body">
-                  <p>{this.props.objectName}</p>
-
+                  <div className="tituloPost"><p>{this.props.objectName}</p></div>
+                  
                   <small>
                     <a> {status}</a>
                     <a>

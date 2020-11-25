@@ -65,6 +65,7 @@ p {
   width: 40px;
   margin-right: 10px;
 }
+
 .social-avatar .media-body a {
   font-size: 14px;
   display: block;
@@ -172,4 +173,15 @@ p {
 
 .fecha-comment {
   padding-left: 10px !important;
+}
+
+.tituloPost{
+  font-size: 25px;
+  padding-bottom: 10px;
+}
+
+.usuarioPost{
+  font-size: 20px;
+  font-weight: 700;
+  font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif;
 }
