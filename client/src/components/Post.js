@@ -56,12 +56,24 @@ export default class Post extends Component {
     let delButton;
     let createComment;
     let status;
+    let variant;
+    if (this.props.tag === "Open") {
+      variant = "success";
+    } else if (this.props.tag === "Closed") {
+      variant = "secondary";
+    } else if (this.props.tag === "To be collected") {
+      variant = "warning";
+    }
 
     // if user logged is the same creator of the post
     if (this.props.email == this.props.correo) {
       status = (
         <div className="dropdown">
-          <DropdownButton id="dropdown-basic-button" title={this.props.tag}>
+          <DropdownButton
+            variant={variant}
+            id="dropdown-basic-button"
+            title={this.props.tag}
+          >
             <Dropdown.Item href="#" onClick={this.changeStatus}>
               Open
             </Dropdown.Item>
@@ -86,7 +98,7 @@ export default class Post extends Component {
       delButton = null;
       status = (
         <div>
-          <Button variant="primary" size="md" disabled>
+          <Button variant={variant} size="md" disabled>
             {this.props.tag}
           </Button>
           <br></br>
@@ -130,8 +142,14 @@ export default class Post extends Component {
 
                   <small>
                     <a> {status}</a>
-                    <a><strong>Place:</strong> {this.props.lugar} </a> <br />
-                    <a><strong>Date found:</strong> {this.formatDate(this.props.fecha)} </a>
+                    <a>
+                      <strong>Place:</strong> {this.props.lugar}{" "}
+                    </a>{" "}
+                    <br />
+                    <a>
+                      <strong>Date found:</strong>{" "}
+                      {this.formatDate(this.props.fecha)}{" "}
+                    </a>
                   </small>
 
                   <img
