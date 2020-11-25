@@ -9,17 +9,29 @@ export default class SignUp extends Component {
       registerName: "",
       registerEmail: "",
       registerPassword: "",
+      loginEmail: "",
+      loginPassword: "",
       success: "",
     };
   }
 
   signUp = (e) => {
-    this.setState({ sucess: "" });
+    this.setState({ success: "" });
     e.preventDefault();
     axios
       .post("/api/signup", this.state, { withCredentials: true })
       .then((response) => {
         this.setState({ success: response.data });
+        if (this.state.success === "User succesfully registered") {
+          this.setState({ loginEmail: this.state.registerEmail });
+          this.setState({ loginPassword: this.state.registerPassword });
+          axios
+            .post("/api/login", this.state, { withCredentials: true })
+            .then((response) => {
+              console.log(response.data);
+              window.location.reload();
+            });
+        }
       });
   };
 
