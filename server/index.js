@@ -239,7 +239,7 @@ app.put("/api/post/status", (req, res) => {
       res.send("Post status updated");
     });
   } else {
-    res.send("Acess Unauthorized");
+    res.send("Access Unauthorized");
   }
 });
 
