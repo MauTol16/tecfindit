@@ -44,7 +44,7 @@ const db = mysql.createPool({
 app.get("/api/", (req, res) => {
   const sqlInsertUser = "select * from posts order by fecha desc";
   const q =
-    "SELECT P.*, U.nombreUsuario FROM Posts P, Users U WHERE P.correo = U.correo order by fecha desc";
+    "SELECT P.*, U.nombreUsuario FROM Posts P, Users U WHERE P.correo = U.correo order by fecha desc, P.postid desc";
   db.query(q, (err, result) => {
     if (err) {
       console.log(err);
