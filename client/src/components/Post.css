@@ -65,6 +65,7 @@ p {
   width: 40px;
   margin-right: 10px;
 }
+
 .social-avatar .media-body a {
   font-size: 14px;
   display: block;
@@ -172,4 +173,8 @@ p {
 
 .fecha-comment {
   padding-left: 10px !important;
+}
+
+.tituloPost{
+  font-size: 30px;
 }
